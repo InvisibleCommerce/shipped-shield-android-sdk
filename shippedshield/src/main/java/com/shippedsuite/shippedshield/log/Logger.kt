@@ -1,10 +1,14 @@
-package com.shippedsuite.shippedshield
+package com.shippedsuite.shippedshield.log
 
 import android.util.Log
+import com.shippedsuite.shippedshield.ShippedPlugins
 
 object Logger {
 
-    private val loggingEnabled: Boolean = true
+    private val loggingEnabled: Boolean
+        get() {
+            return ShippedPlugins.enableLogging
+        }
 
     internal enum class Level {
         VERBOSE, DEBUG, INFO, WARNING, ERROR
