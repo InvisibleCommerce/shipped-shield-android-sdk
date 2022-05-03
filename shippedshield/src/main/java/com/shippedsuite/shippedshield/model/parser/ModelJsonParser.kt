@@ -9,7 +9,7 @@ interface ModelJsonParser<Model> {
     fun parse(json: JSONObject): Model?
 
     val dateFormat: SimpleDateFormat
-        get() = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ", Locale.getDefault())
+        get() = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
     companion object {
         fun jsonArrayToList(jsonArray: JSONArray?): List<String> {

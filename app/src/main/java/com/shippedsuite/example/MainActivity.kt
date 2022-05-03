@@ -1,28 +1,75 @@
 package com.shippedsuite.example
 
+import android.app.AlertDialog
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.shippedsuite.shippedshield.ShippedAPIRepository
-import com.shippedsuite.shippedshield.ShippedPlugins
-import com.shippedsuite.shippedshield.log.Logger
-import com.shippedsuite.shippedshield.model.ShieldRequest
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.math.BigDecimal
+import com.shippedsuite.example.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private var dialog: Dialog? = null
+
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
-        Logger.debug("Logged from shippedshield.")
-
-        ShippedPlugins.configure("pk_development_117c2ee46c122fb0ce070fbc984e6a4742040f05a1c73f8a900254a1933a0112")
-
-        GlobalScope.launch {
-            var request = ShieldRequest.Builder().setOrderValue(BigDecimal.valueOf(129.99)).build()
-            val response = ShippedAPIRepository().getShieldFee(request)
-            Logger.debug(response.toString())
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(
+                    R.id.container,
+                    MainFragment()
+                )
+                .commit()
         }
+    }
+
+    fun showAlert(title: String, message: String) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setCancelable(false)
+            .setPositiveButton(android.R.string.ok) { dialogInterface, _ ->
+                dialogInterface.dismiss()
+            }
+            .create()
+            .show()
+    }
+
+    fun setLoadingProgress(loading: Boolean) {
+        if (loading) {
+            startWait()
+        } else {
+            endWait()
+        }
+    }
+
+    private fun startWait() {
+        if (dialog?.isShowing == true) {
+            return
+        }
+        if (!isFinishing) {
+            try {
+                dialog = Dialog(this).apply {
+                    setContentView(R.layout.loading)
+                    window?.setBackgroundDrawableResource(android.R.color.transparent)
+                    setCancelable(false)
+                    show()
+                }
+            } catch (e: Exception) {
+            }
+        } else {
+            dialog = null
+        }
+    }
+
+    private fun endWait() {
+        dialog?.dismiss()
+        dialog = null
     }
 }

@@ -1,6 +1,7 @@
 package com.shippedsuite.shippedshield.model
 
 import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.math.BigDecimal
 
@@ -10,6 +11,7 @@ data class ShieldRequest internal constructor(
     var orderValue: BigDecimal? = null
 ) : ShippedRequestModel, Parcelable {
 
+    @IgnoredOnParcel
     val path: String = "/v1/shield_offers"
 
     private companion object {
