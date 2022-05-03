@@ -3,6 +3,7 @@ package com.shippedsuite.shippedshield.http
 import com.shippedsuite.shippedshield.exception.APIConnectionException
 import com.shippedsuite.shippedshield.exception.InvalidRequestException
 import com.shippedsuite.shippedshield.log.Logger
+import com.shippedsuite.shippedshield.util.unsafe
 import java.io.IOException
 import java.net.URL
 import java.util.concurrent.TimeUnit
@@ -14,7 +15,7 @@ class HttpClient {
     fun execute(request: HttpRequest): HttpResponse {
         Logger.info(request.toString())
         HttpConnection(
-            (URL(request.url).openConnection() as HttpsURLConnection).apply {
+            (URL(request.url).openConnection() as HttpsURLConnection).unsafe().apply {
                 connectTimeout = CONNECT_TIMEOUT
                 readTimeout = READ_TIMEOUT
                 useCaches = false
