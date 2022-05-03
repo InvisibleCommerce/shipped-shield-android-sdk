@@ -65,7 +65,7 @@ class MainFragment : Fragment() {
                     ShippedAPIRepository().getShieldFee(request)
                 }
 
-                Logger.debug(TAG, "response ${shieldOffer?.toString()}")
+                Logger.debug(TAG, "Get shield fee: ${shieldOffer?.toString()}")
 
                 (activity as? MainActivity)?.setLoadingProgress(false)
                 shieldOffer?.shieldFee?.let {
