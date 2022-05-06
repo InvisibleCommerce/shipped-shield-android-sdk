@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shippedsuite.shippedshield.APIRepository
 import com.shippedsuite.shippedshield.ShippedAPIRepository
+import com.shippedsuite.shippedshield.ShippedPlugins
 import com.shippedsuite.shippedshield.databinding.ViewShieldFeeBannerBinding
 import com.shippedsuite.shippedshield.log.Logger
 import com.shippedsuite.shippedshield.model.ShieldRequest
@@ -34,6 +35,10 @@ class ShieldFeeBanner @JvmOverloads constructor(
         binding.learnMore.paintFlags = binding.learnMore.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         binding.learnMore.setOnClickListener {
             ShippedFeeDialog.show(context)
+        }
+        binding.shieldSwitch.isChecked = ShippedPlugins.shieldEnable
+        binding.shieldSwitch.setOnCheckedChangeListener { _, isChecked ->
+            ShippedPlugins.shieldEnable = isChecked
         }
     }
 
