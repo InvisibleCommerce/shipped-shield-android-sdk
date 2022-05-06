@@ -28,84 +28,27 @@
         app:layout_constraintStart_toEndOf="@id/order_value"
         app:layout_constraintTop_toTopOf="@id/order_value" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/shield_switch"
-        android:layout_width="wrap_content"
+    <com.shippedsuite.shippedshield.widget.ShieldFeeBanner
+        android:id="@+id/shield_fee_banner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/switch_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="6dp"
-        app:layout_constraintBottom_toBottomOf="@id/shield_switch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/shield_switch"
-        app:layout_constraintTop_toTopOf="@id/shield_switch">
-
-        <TextView
-            android:id="@+id/shipped_shield"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/shipped_shield"
-            android:textColor="#1A1A1A"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/learn_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/learn_more"
-            android:textColor="#4D4D4D"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@id/shipped_shield"
-            app:layout_constraintStart_toEndOf="@id/shipped_shield"
-            app:layout_constraintTop_toTopOf="@id/shipped_shield"
-            tools:ignore="SmallSp" />
-
-        <TextView
-            android:id="@+id/fee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#1A1A1A"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/shipped_shield"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/shipped_shield"
-            tools:text="$2.27" />
-
-
-        <TextView
-            android:id="@+id/shipped_shield_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/shipped_shield_info"
-            android:textColor="#4D4D4D"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shipped_shield" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/order_value" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/display_learn_more_model"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/button_solid"
         android:text="@string/display_learn_more_model"
         android:textColor="#1A1A1A"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/switch_layout" />
+        app:layout_constraintTop_toBottomOf="@id/shield_fee_banner" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/send_shield_fee_request"

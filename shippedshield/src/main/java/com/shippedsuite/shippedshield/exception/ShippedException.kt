@@ -4,7 +4,7 @@ import com.shippedsuite.shippedshield.model.ShippedError
 
 abstract class ShippedException @JvmOverloads constructor(
     val error: ShippedError?,
-    val statusCode: Int,
+    private val statusCode: Int,
     message: String? = error?.message,
     e: Throwable? = null
 ) : Exception(message, e) {

@@ -2,7 +2,6 @@ package com.shippedsuite.shippedshield.http
 
 import com.shippedsuite.shippedshield.ShippedPlugins
 import com.shippedsuite.shippedshield.exception.InvalidRequestException
-import com.shippedsuite.shippedshield.model.Options
 import com.shippedsuite.shippedshield.util.JsonUtils
 import java.io.OutputStream
 import java.io.UnsupportedEncodingException
@@ -10,8 +9,7 @@ import java.io.UnsupportedEncodingException
 open class HttpRequest internal constructor(
     val method: Method,
     val url: String,
-    val params: Map<String, *>? = null,
-    val options: Options? = null,
+    private val params: Map<String, *>? = null,
     private val accept: String? = null
 ) {
     private val mimeType: MimeType = MimeType.Json
@@ -28,7 +26,7 @@ open class HttpRequest internal constructor(
                 CONTENT_TYPE_HEADER_KEY to CONTENT_TYPE_HEADER_VALUE
             )
                 .plus(
-                    if (ShippedPlugins.publicKey?.isEmpty() == true) {
+                    if (ShippedPlugins.publicKey.isEmpty()) {
                         emptyMap()
                     } else {
                         mapOf(AUTHORIZATION to "Bearer ${ShippedPlugins.publicKey}")
@@ -82,19 +80,17 @@ open class HttpRequest internal constructor(
 
         fun createGet(
             url: String,
-            options: Options? = null,
             params: Map<String, *>? = null,
             accept: String? = null
         ): HttpRequest {
-            return HttpRequest(Method.GET, url, params, options, accept)
+            return HttpRequest(Method.GET, url, params, accept)
         }
 
         fun createPost(
             url: String,
-            options: Options? = null,
             params: Map<String, *>? = null
         ): HttpRequest {
-            return HttpRequest(Method.POST, url, params, options)
+            return HttpRequest(Method.POST, url, params)
         }
     }
 }

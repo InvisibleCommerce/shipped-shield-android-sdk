@@ -7,11 +7,11 @@ import java.util.*
 
 @Parcelize
 data class ShieldOffer constructor(
-    val storefrontId: String? = null,
+    val storefrontId: String,
 
-    val orderValue: BigDecimal? = null,
+    val orderValue: BigDecimal,
 
-    val shieldFee: BigDecimal? = null,
+    val shieldFee: BigDecimal,
 
-    val offeredAt: Date? = null
-): ShippedModel, Parcelable
+    val offeredAt: Date?
+) : ShippedModel, Parcelable

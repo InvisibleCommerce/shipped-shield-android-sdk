@@ -2,8 +2,8 @@ package com.shippedsuite.example
 
 import android.app.AlertDialog
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.shippedsuite.example.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

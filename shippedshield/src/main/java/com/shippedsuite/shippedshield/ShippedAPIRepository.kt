@@ -15,21 +15,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.parcelize.Parcelize
 import java.io.IOException
-import java.math.BigDecimal
 import java.net.HttpURLConnection
 import java.util.*
 
-class ShippedAPIRepository : APIRepository {
+internal class ShippedAPIRepository : APIRepository {
 
     private val httpClient: HttpClient = HttpClient()
 
-    override suspend fun getShieldFee(request: ShieldRequest): ShieldOffer? {
-        val baseUrl: String = ShippedPlugins.mode.baseUrl()
+    @Parcelize
+    class ShieldRequestOptions constructor(
+        val request: ShieldRequest
+    ) : Options()
+
+    override suspend fun getShieldFee(options: Options): ShieldOffer {
+        val baseUrl: String = ShippedPlugins.environment.baseUrl()
 
         return executeApiRequest(
             HttpRequest.createPost(
-                url = baseUrl + request.path,
-                params = request.toParamMap()
+                url = createShieldOffersdUrl(baseUrl),
+                params = (options as ShieldRequestOptions).request.toParamMap()
             ),
             ShieldOfferParser()
         )
@@ -45,7 +49,7 @@ class ShippedAPIRepository : APIRepository {
     private suspend fun <ModelType : ShippedModel> executeApiRequest(
         request: HttpRequest,
         jsonParser: ModelJsonParser<ModelType>
-    ): ModelType? = withContext(Dispatchers.IO) {
+    ): ModelType = withContext(Dispatchers.IO) {
         val response = runCatching {
             httpClient.execute(request)
         }.getOrElse {
@@ -84,6 +88,20 @@ class ShippedAPIRepository : APIRepository {
             else -> {
                 throw APIException(error = error, statusCode = responseCode)
             }
+        }
+    }
+
+    companion object {
+        internal fun createShieldOffersdUrl(baseUrl: String): String {
+            return getApiUrl(
+                baseUrl,
+                "v1/shield_offers"
+            )
+        }
+
+        @Suppress("DEPRECATION")
+        internal fun getApiUrl(baseUrl: String, path: String, vararg args: Any): String {
+            return "$baseUrl/${String.format(Locale.ENGLISH, path, *args)}"
         }
     }
 }

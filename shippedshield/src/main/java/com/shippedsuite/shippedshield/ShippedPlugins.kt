@@ -1,16 +1,26 @@
 package com.shippedsuite.shippedshield
 
-object ShippedPlugins {
+internal object ShippedPlugins {
 
-    internal var publicKey: String? = null
+    private var configuration: ShippedConfiguration =
+        ShippedConfiguration("", false, Environment.PRODUCTION)
 
-    internal var enableLogging: Boolean = false
-
-    internal var mode: Mode = Mode.Development
-
-    fun configure(publicKey: String, enableLogging: Boolean = false, mode: Mode = Mode.Development) {
-        this.publicKey = publicKey
-        this.enableLogging = enableLogging
-        this.mode = mode
+    fun initialize(configuration: ShippedConfiguration) {
+        this.configuration = configuration
     }
+
+    internal val publicKey: String
+        get() {
+            return configuration.publicKey
+        }
+
+    internal val enableLogging: Boolean
+        get() {
+            return configuration.enableLogging
+        }
+
+    internal val environment: Environment
+        get() {
+            return configuration.environment
+        }
 }

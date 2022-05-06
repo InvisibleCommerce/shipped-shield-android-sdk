@@ -4,7 +4,7 @@ import com.shippedsuite.shippedshield.model.ShippedError
 import com.shippedsuite.shippedshield.util.JsonUtils
 import org.json.JSONObject
 
-class ShippedErrorParser: ModelJsonParser<ShippedError> {
+class ShippedErrorParser : ModelJsonParser<ShippedError> {
 
     override fun parse(json: JSONObject): ShippedError {
         return ShippedError(

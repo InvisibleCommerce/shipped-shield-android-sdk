@@ -5,7 +5,6 @@ import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import javax.net.ssl.*
 
-
 /**
  * Overrides Java default certificate authentication
  */
@@ -40,7 +39,6 @@ fun HttpsURLConnection.trustAllHosts(): HttpsURLConnection {
     }
     return this
 }
-
 
 fun HttpsURLConnection.notVerify(): HttpsURLConnection {
     this.hostnameVerifier = DO_NOT_VERIFY
