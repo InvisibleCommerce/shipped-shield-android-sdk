@@ -22,7 +22,6 @@ class Shipped internal constructor(
         price: BigDecimal,
         listener: ShippedListener<ShieldOffer>
     ) {
-
         shippedManager.startOperation(
             ShippedAPIRepository.ShieldRequestOptions(
                 request = ShieldRequest.Builder().setOrderValue(price).build()

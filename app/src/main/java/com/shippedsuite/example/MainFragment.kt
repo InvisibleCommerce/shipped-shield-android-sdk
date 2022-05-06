@@ -1,15 +1,21 @@
 package com.shippedsuite.example
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.shippedsuite.example.databinding.FragmentMainBinding
+import com.shippedsuite.shippedshield.widget.ShippedFeeDialog
 import java.math.BigDecimal
 
 class MainFragment : Fragment() {
+
+    companion object {
+        const val TAG = "MainFragment"
+    }
 
     private val binding: FragmentMainBinding by lazy {
         FragmentMainBinding.inflate(layoutInflater)
@@ -36,6 +42,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.displayLearnMoreModel.setOnClickListener {
+            ShippedFeeDialog.show(requireContext())
         }
 
         binding.sendShieldFeeRequest.setOnClickListener {
@@ -48,22 +55,20 @@ class MainFragment : Fragment() {
                 )
                 return@setOnClickListener
             }
-            (activity as? MainActivity)?.setLoadingProgress(true)
-            viewModel.getShieldFee(price)
-        }
 
-        viewModel.shieldFeeLiveData.observe(viewLifecycleOwner) {
-            when (it) {
-                is MainViewModel.ShieldOfferStatus.Success -> {
-                    (activity as? MainActivity)?.setLoadingProgress(false)
-                    binding.shieldFeeBanner.onResult(it.shieldOffer)
-                }
-                is MainViewModel.ShieldOfferStatus.Fail -> {
-                    (activity as? MainActivity)?.setLoadingProgress(false)
-                    (activity as? MainActivity)?.showAlert(
-                        "Error",
-                        it.exception.message ?: "Unknown error"
-                    )
+            // Option 1: We support custom ui, you just need to pass the `order` params
+            binding.shieldFeeBanner.updateOrderValue(price)
+
+            // Option 2: We support api, so that you can use your own UI
+            viewModel.getShieldFee(price)
+            viewModel.shieldFeeLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is MainViewModel.ShieldOfferStatus.Success -> {
+                        Log.d(TAG, "Get shield fee success! $it")
+                    }
+                    is MainViewModel.ShieldOfferStatus.Fail -> {
+                        Log.e(TAG, "Get shield fee failed!", it.exception)
+                    }
                 }
             }
         }
