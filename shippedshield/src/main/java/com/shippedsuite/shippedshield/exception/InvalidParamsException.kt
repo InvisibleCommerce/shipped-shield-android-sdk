@@ -2,4 +2,4 @@ package com.shippedsuite.shippedshield.exception
 
 class InvalidParamsException(
     message: String
-) : ShippedException(null, 0, message)
+) : ShieldException(null, 0, message)

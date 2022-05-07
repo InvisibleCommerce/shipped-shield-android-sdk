@@ -8,7 +8,7 @@ import java.math.BigDecimal
 internal data class ShieldRequest internal constructor(
 
     var orderValue: BigDecimal? = null
-) : ShippedRequestModel, Parcelable {
+) : ShieldRequestModel, Parcelable {
 
     private companion object {
         private const val ORDER_VALUE = "order_value"

@@ -14,4 +14,4 @@ data class ShieldOffer constructor(
     val shieldFee: BigDecimal,
 
     val offeredAt: Date?
-) : ShippedModel, Parcelable
+) : ShieldModel, Parcelable

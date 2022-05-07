@@ -1,5 +1,6 @@
 package com.shippedsuite.shippedshield
 
+import android.os.Parcelable
 import com.shippedsuite.shippedshield.exception.*
 import com.shippedsuite.shippedshield.http.HttpClient
 import com.shippedsuite.shippedshield.http.HttpRequest
@@ -7,10 +8,10 @@ import com.shippedsuite.shippedshield.http.HttpResponse
 import com.shippedsuite.shippedshield.model.Options
 import com.shippedsuite.shippedshield.model.ShieldOffer
 import com.shippedsuite.shippedshield.model.ShieldRequest
-import com.shippedsuite.shippedshield.model.ShippedModel
+import com.shippedsuite.shippedshield.model.ShieldModel
 import com.shippedsuite.shippedshield.model.parser.ModelJsonParser
 import com.shippedsuite.shippedshield.model.parser.ShieldOfferParser
-import com.shippedsuite.shippedshield.model.parser.ShippedErrorParser
+import com.shippedsuite.shippedshield.model.parser.ShieldErrorParser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.parcelize.Parcelize
@@ -18,17 +19,17 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.util.*
 
-internal class ShippedAPIRepository : APIRepository {
+internal class ShieldAPIRepository : APIRepository {
 
     private val httpClient: HttpClient = HttpClient()
 
     @Parcelize
     class ShieldRequestOptions constructor(
         val request: ShieldRequest
-    ) : Options()
+    ) : Options, Parcelable
 
     override suspend fun getShieldFee(options: Options): ShieldOffer {
-        val baseUrl: String = ShippedPlugins.environment.baseUrl()
+        val baseUrl: String = ShieldPlugins.environment.baseUrl()
 
         return executeApiRequest(
             HttpRequest.createPost(
@@ -46,7 +47,7 @@ internal class ShippedAPIRepository : APIRepository {
         APIException::class,
         APIConnectionException::class
     )
-    private suspend fun <ModelType : ShippedModel> executeApiRequest(
+    private suspend fun <ModelType : ShieldModel> executeApiRequest(
         request: HttpRequest,
         jsonParser: ModelJsonParser<ModelType>
     ): ModelType = withContext(Dispatchers.IO) {
@@ -74,7 +75,7 @@ internal class ShippedAPIRepository : APIRepository {
     )
     private fun handleApiError(response: HttpResponse) {
         val responseCode = response.code
-        val error = ShippedErrorParser().parse(response.responseJson)
+        val error = ShieldErrorParser().parse(response.responseJson)
         when (responseCode) {
             HttpURLConnection.HTTP_BAD_REQUEST, HttpURLConnection.HTTP_NOT_FOUND -> {
                 throw InvalidRequestException(error = error)

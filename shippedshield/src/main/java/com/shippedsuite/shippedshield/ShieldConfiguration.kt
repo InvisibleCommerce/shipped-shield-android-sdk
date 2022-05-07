@@ -2,13 +2,13 @@ package com.shippedsuite.shippedshield
 
 import android.content.Context
 
-data class ShippedConfiguration internal constructor(
+data class ShieldConfiguration internal constructor(
     val applicationContext: Context,
     val publicKey: String,
-    val enableLogging: Boolean,
-    val environment: Environment
+    var enableLogging: Boolean,
+    var environment: Mode
 ) {
-    class Builder(val applicationContext: Context, private val publicKey: String) {
+    class Builder(private val applicationContext: Context, private val publicKey: String) {
 
         /**
          * You can set to true if you want to see more debug logs
@@ -18,18 +18,18 @@ data class ShippedConfiguration internal constructor(
         /**
          * Set the environment to be used by Shipped
          */
-        private var environment: Environment = Environment.PRODUCTION
+        private var environment: Mode = Mode.PRODUCTION
 
         fun enableLogging(enable: Boolean): Builder = apply {
             this.enableLogging = enable
         }
 
-        fun setEnvironment(environment: Environment): Builder = apply {
+        fun setEnvironment(environment: Mode): Builder = apply {
             this.environment = environment
         }
 
-        fun build(): ShippedConfiguration {
-            return ShippedConfiguration(
+        fun build(): ShieldConfiguration {
+            return ShieldConfiguration(
                 applicationContext = applicationContext,
                 publicKey = publicKey,
                 enableLogging = enableLogging,

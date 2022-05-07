@@ -1,10 +1,10 @@
 package com.shippedsuite.shippedshield.exception
 
-import com.shippedsuite.shippedshield.model.ShippedError
+import com.shippedsuite.shippedshield.model.ShieldError
 
 class APIException(
-    error: ShippedError? = null,
+    error: ShieldError? = null,
     statusCode: Int = 0,
     message: String? = error?.message,
     e: Throwable? = null
-) : ShippedException(error, statusCode, message, e)
+) : ShieldException(error, statusCode, message, e)

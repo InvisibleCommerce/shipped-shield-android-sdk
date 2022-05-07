@@ -1,12 +1,12 @@
 package com.shippedsuite.shippedshield.exception
 
-import com.shippedsuite.shippedshield.model.ShippedError
+import com.shippedsuite.shippedshield.model.ShieldError
 import java.io.IOException
 
 class APIConnectionException(
     message: String? = null,
     e: Throwable
-) : ShippedException(ShippedError(message = message), STATUS_CODE, message, e) {
+) : ShieldException(ShieldError(message = message), STATUS_CODE, message, e) {
     companion object {
         private const val STATUS_CODE = 0
 

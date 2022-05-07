@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Example</string>
     <string name="order_value">Order Value:</string>
-
-
     <string name="display_learn_more_model">Display Learn More Model</string>
     <string name="send_shield_fee_request">Send Shield Fee Request</string>
 

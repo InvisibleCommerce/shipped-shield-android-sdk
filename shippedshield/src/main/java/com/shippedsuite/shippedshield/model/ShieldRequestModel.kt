@@ -1,5 +1,5 @@
 package com.shippedsuite.shippedshield.model
 
-interface ShippedRequestModel {
+interface ShieldRequestModel {
     fun toParamMap(): Map<String, Any>
 }

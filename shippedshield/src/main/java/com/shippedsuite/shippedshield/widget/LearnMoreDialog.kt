@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shippedsuite.shippedshield.R
 
-class ShippedFeeDialog internal constructor(context: Context) :
+class LearnMoreDialog internal constructor(context: Context) :
     AppCompatDialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +20,7 @@ class ShippedFeeDialog internal constructor(context: Context) :
 
     companion object {
         fun show(context: Context) {
-            val dialog = ShippedFeeDialog(context)
+            val dialog = LearnMoreDialog(context)
             dialog.show()
             dialog.window?.setLayout(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,

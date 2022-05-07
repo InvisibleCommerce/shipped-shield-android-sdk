@@ -4,16 +4,16 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 
-internal object ShippedPlugins {
+internal object ShieldPlugins {
 
     private const val SHARED_PREF = "shipped_sp"
     private const val SHIELD_ENABLE = "shield_enable"
 
-    private lateinit var configuration: ShippedConfiguration
+    private lateinit var configuration: ShieldConfiguration
 
     private lateinit var sp: SharedPreferences
 
-    fun initialize(configuration: ShippedConfiguration) {
+    fun initialize(configuration: ShieldConfiguration) {
         this.configuration = configuration
         this.sp = configuration.applicationContext.getSharedPreferences(
             SHARED_PREF,
@@ -26,12 +26,18 @@ internal object ShippedPlugins {
             return configuration.publicKey
         }
 
-    internal val enableLogging: Boolean
+    internal var enableLogging: Boolean
+        set(value) {
+            configuration.enableLogging = value
+        }
         get() {
             return configuration.enableLogging
         }
 
-    internal val environment: Environment
+    internal var environment: Mode
+        set(value) {
+            configuration.environment = value
+        }
         get() {
             return configuration.environment
         }

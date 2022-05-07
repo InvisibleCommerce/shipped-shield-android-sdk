@@ -28,8 +28,8 @@
         app:layout_constraintStart_toEndOf="@id/order_value"
         app:layout_constraintTop_toTopOf="@id/order_value" />
 
-    <com.shippedsuite.shippedshield.widget.ShieldFeeBanner
-        android:id="@+id/shield_fee_banner"
+    <com.shippedsuite.shippedshield.widget.WidgetView
+        android:id="@+id/widget_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -48,7 +48,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shield_fee_banner" />
+        app:layout_constraintTop_toBottomOf="@id/widget_view" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/send_shield_fee_request"

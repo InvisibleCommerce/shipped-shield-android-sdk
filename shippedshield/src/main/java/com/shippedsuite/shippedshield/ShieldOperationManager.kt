@@ -1,27 +1,27 @@
 package com.shippedsuite.shippedshield
 
 import com.shippedsuite.shippedshield.exception.APIException
-import com.shippedsuite.shippedshield.exception.ShippedException
+import com.shippedsuite.shippedshield.exception.ShieldException
 import com.shippedsuite.shippedshield.model.Options
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ShippedOperationManager(private val repository: APIRepository) : OperationManager {
+class ShieldOperationManager(private val repository: APIRepository) : OperationManager {
 
     private val workContext = Dispatchers.Main
 
-    override fun <T> startOperation(options: Options, listener: Shipped.ShippedListener<T>) {
+    override fun <T> startOperation(options: Options, listener: ShippedShield.Listener<T>) {
         CoroutineScope(workContext).launch {
             execute(options, listener)
         }
     }
 
     @Suppress("UNCHECKED_CAST")
-    private suspend fun <T> execute(options: Options, listener: Shipped.ShippedListener<T>) {
+    private suspend fun <T> execute(options: Options, listener: ShippedShield.Listener<T>) {
         when (options) {
-            is ShippedAPIRepository.ShieldRequestOptions -> {
+            is ShieldAPIRepository.ShieldRequestOptions -> {
                 val result = runCatching {
                     requireNotNull(repository.getShieldFee(options))
                 }
@@ -35,8 +35,8 @@ class ShippedOperationManager(private val repository: APIRepository) : Operation
         }
     }
 
-    private fun handleError(throwable: Throwable): ShippedException {
-        return if (throwable is ShippedException) {
+    private fun handleError(throwable: Throwable): ShieldException {
+        return if (throwable is ShieldException) {
             throwable
         } else {
             APIException(message = throwable.message)

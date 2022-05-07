@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/shipped_learn_more"
+            android:text="@string/shield_learn_more"
             android:textColor="#4D4D4D"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/shipped_shield"
@@ -54,6 +54,7 @@
             android:layout_marginStart="4dp"
             android:ellipsize="end"
             android:gravity="end"
+            android:text="@string/shield_fee_default"
             android:textColor="#1A1A1A"
             android:textSize="14sp"
             app:autoSizeMaxTextSize="14sp"
@@ -63,14 +64,13 @@
             app:layout_constraintBottom_toBottomOf="@id/shipped_shield"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/learn_more"
-            app:layout_constraintTop_toTopOf="@id/shipped_shield"
-            tools:text="$2.27" />
+            app:layout_constraintTop_toTopOf="@id/shipped_shield" />
 
         <TextView
             android:id="@+id/shipped_shield_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/shipped_shield_info"
+            android:text="@string/shield_shield_info"
             android:textColor="#4D4D4D"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"

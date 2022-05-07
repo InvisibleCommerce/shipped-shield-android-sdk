@@ -1,6 +1,6 @@
 package com.shippedsuite.shippedshield.http
 
-import com.shippedsuite.shippedshield.ShippedPlugins
+import com.shippedsuite.shippedshield.ShieldPlugins
 import com.shippedsuite.shippedshield.exception.InvalidRequestException
 import com.shippedsuite.shippedshield.util.JsonUtils
 import java.io.OutputStream
@@ -26,10 +26,10 @@ open class HttpRequest internal constructor(
                 CONTENT_TYPE_HEADER_KEY to CONTENT_TYPE_HEADER_VALUE
             )
                 .plus(
-                    if (ShippedPlugins.publicKey.isEmpty()) {
+                    if (ShieldPlugins.publicKey.isEmpty()) {
                         emptyMap()
                     } else {
-                        mapOf(AUTHORIZATION to "Bearer ${ShippedPlugins.publicKey}")
+                        mapOf(AUTHORIZATION to "Bearer ${ShieldPlugins.publicKey}")
                     }
                 )
         }

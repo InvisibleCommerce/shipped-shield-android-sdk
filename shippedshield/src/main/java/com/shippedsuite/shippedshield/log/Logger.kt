@@ -1,13 +1,13 @@
 package com.shippedsuite.shippedshield.log
 
 import android.util.Log
-import com.shippedsuite.shippedshield.ShippedPlugins
+import com.shippedsuite.shippedshield.ShieldPlugins
 
 object Logger {
 
     private val loggingEnabled: Boolean
         get() {
-            return ShippedPlugins.enableLogging
+            return ShieldPlugins.enableLogging
         }
 
     internal enum class Level {

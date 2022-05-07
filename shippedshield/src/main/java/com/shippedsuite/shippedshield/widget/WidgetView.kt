@@ -6,25 +6,33 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shippedsuite.shippedshield.APIRepository
-import com.shippedsuite.shippedshield.ShippedAPIRepository
-import com.shippedsuite.shippedshield.ShippedPlugins
+import com.shippedsuite.shippedshield.ShieldAPIRepository
+import com.shippedsuite.shippedshield.ShieldPlugins
 import com.shippedsuite.shippedshield.databinding.ViewShieldFeeBannerBinding
-import com.shippedsuite.shippedshield.log.Logger
+import com.shippedsuite.shippedshield.exception.APIException
+import com.shippedsuite.shippedshield.exception.ShieldException
 import com.shippedsuite.shippedshield.model.ShieldRequest
 import kotlinx.coroutines.*
 import java.math.BigDecimal
 import java.text.NumberFormat
 
-class ShieldFeeBanner @JvmOverloads constructor(
+class WidgetView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
+    interface Callback<T> {
+        fun onSuccess(isShieldEnabled: Boolean, shieldFee: T)
+        fun onFailed(isShieldEnabled: Boolean, exception: ShieldException)
+    }
+
+    var callback: Callback<BigDecimal>? = null
+
     private var job: Job? = null
 
     private val apiRepository: APIRepository by lazy {
-        ShippedAPIRepository()
+        ShieldAPIRepository()
     }
 
     private val binding by lazy {
@@ -34,11 +42,11 @@ class ShieldFeeBanner @JvmOverloads constructor(
     init {
         binding.learnMore.paintFlags = binding.learnMore.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         binding.learnMore.setOnClickListener {
-            ShippedFeeDialog.show(context)
+            LearnMoreDialog.show(context)
         }
-        binding.shieldSwitch.isChecked = ShippedPlugins.shieldEnable
+        binding.shieldSwitch.isChecked = ShieldPlugins.shieldEnable
         binding.shieldSwitch.setOnCheckedChangeListener { _, isChecked ->
-            ShippedPlugins.shieldEnable = isChecked
+            ShieldPlugins.shieldEnable = isChecked
         }
     }
 
@@ -50,7 +58,7 @@ class ShieldFeeBanner @JvmOverloads constructor(
             val result = runCatching {
                 requireNotNull(
                     apiRepository.getShieldFee(
-                        ShippedAPIRepository.ShieldRequestOptions(
+                        ShieldAPIRepository.ShieldRequestOptions(
                             request = ShieldRequest.Builder().setOrderValue(orderValue).build()
                         )
                     )
@@ -59,13 +67,22 @@ class ShieldFeeBanner @JvmOverloads constructor(
             withContext(Dispatchers.Main) {
                 result.fold(
                     onSuccess = {
+                        callback?.onSuccess(ShieldPlugins.shieldEnable, it.shieldFee)
                         binding.fee.text = NumberFormat.getCurrencyInstance().format(it.shieldFee)
                     },
                     onFailure = {
-                        Logger.error("Failed to get shield fee", it)
+                        callback?.onFailed(ShieldPlugins.shieldEnable, handleError(it))
                     }
                 )
             }
+        }
+    }
+
+    private fun handleError(throwable: Throwable): ShieldException {
+        return if (throwable is ShieldException) {
+            throwable
+        } else {
+            APIException(message = throwable.message)
         }
     }
 

@@ -1,14 +1,15 @@
 <resources>
 
     <string name="shipped_shield">Shipped Shield</string>
-    <string name="shipped_learn_more">Learn More</string>
-    <string name="shipped_shield_info">Package Assurance for unexpected issues</string>
-    <string name="shipped_got_it">Got it!</string>
-    <string name="shipped_fee_title">Shipped Shield Premium Package Assurance</string>
-    <string name="shipped_fee_sub_title">Have peace of mind and instantly resolve unexpected issues hassle-free.</string>
-    <string name="shipped_fee_info_one">Instant premium package assurance for damage, loss, or theft.</string>
-    <string name="shipped_fee_info_two">Save time and headache reporting unexpected shipment issues.</string>
-    <string name="shipped_fee_info_three">Easily resolve issues and get a replacement or refund, hassle-free.</string>
-    <string name="shipped_fee_message">Shipped offers shipment protection with tracking services and hassle-free solutions for resolving shipment issues for online purchases that are damaged in transit, lost by the carrier, or stolen immediately after the carrier\'s proof of delivery where Shipped monitors the shipment.</string>
+    <string name="shield_learn_more">Learn More</string>
+    <string name="shield_shield_info">Package Assurance for unexpected issues</string>
+    <string name="shield_got_it">Got it!</string>
+    <string name="shield_fee_title">Shipped Shield Premium Package Assurance</string>
+    <string name="shield_fee_sub_title">Have peace of mind and instantly resolve unexpected issues hassle-free.</string>
+    <string name="shield_fee_info_one">Instant premium package assurance for damage, loss, or theft.</string>
+    <string name="shield_fee_info_two">Save time and headache reporting unexpected shipment issues.</string>
+    <string name="shield_fee_info_three">Easily resolve issues and get a replacement or refund, hassle-free.</string>
+    <string name="shield_fee_message">Shipped offers shipment protection with tracking services and hassle-free solutions for resolving shipment issues for online purchases that are damaged in transit, lost by the carrier, or stolen immediately after the carrier\'s proof of delivery where Shipped monitors the shipment.</string>
+    <string name="shield_fee_default">N/A</string>
 
 </resources>
