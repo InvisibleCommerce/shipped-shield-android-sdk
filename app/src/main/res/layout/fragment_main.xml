@@ -22,6 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:imeOptions="actionDone"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@id/order_value"
         app:layout_constraintEnd_toEndOf="parent"

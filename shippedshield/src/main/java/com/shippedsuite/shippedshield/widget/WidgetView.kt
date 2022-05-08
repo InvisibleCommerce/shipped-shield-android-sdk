@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shippedsuite.shippedshield.APIRepository
 import com.shippedsuite.shippedshield.ShieldAPIRepository
-import com.shippedsuite.shippedshield.ShieldPlugins
+import com.shippedsuite.shippedshield.ShieldPlugins.shieldEnable
 import com.shippedsuite.shippedshield.databinding.ViewShieldFeeBannerBinding
 import com.shippedsuite.shippedshield.exception.APIException
 import com.shippedsuite.shippedshield.exception.ShieldException
+import com.shippedsuite.shippedshield.model.ShieldOffer
 import com.shippedsuite.shippedshield.model.ShieldRequest
 import kotlinx.coroutines.*
 import java.math.BigDecimal
@@ -22,14 +23,21 @@ class WidgetView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
+    companion object {
+        const val IS_SHIELD_ENABLE_KEY = "isShieldEnabled"
+        const val SHIELD_FEE_KEY = "shieldFee"
+        const val ERROR_KEY = "error"
+    }
+
     interface Callback<T> {
-        fun onSuccess(isShieldEnabled: Boolean, shieldFee: T)
-        fun onFailed(isShieldEnabled: Boolean, exception: ShieldException)
+        fun onResult(result: Map<String, Any>)
     }
 
     var callback: Callback<BigDecimal>? = null
 
     private var job: Job? = null
+
+    private var cacheResult: MutableMap<String, Any> = mutableMapOf()
 
     private val apiRepository: APIRepository by lazy {
         ShieldAPIRepository()
@@ -44,9 +52,10 @@ class WidgetView @JvmOverloads constructor(
         binding.learnMore.setOnClickListener {
             LearnMoreDialog.show(context)
         }
-        binding.shieldSwitch.isChecked = ShieldPlugins.shieldEnable
+        binding.shieldSwitch.isChecked = shieldEnable
         binding.shieldSwitch.setOnCheckedChangeListener { _, isChecked ->
-            ShieldPlugins.shieldEnable = isChecked
+            shieldEnable = isChecked
+            onResult()
         }
     }
 
@@ -67,15 +76,28 @@ class WidgetView @JvmOverloads constructor(
             withContext(Dispatchers.Main) {
                 result.fold(
                     onSuccess = {
-                        callback?.onSuccess(ShieldPlugins.shieldEnable, it.shieldFee)
+                        onResult(shieldOffer = it)
                         binding.fee.text = NumberFormat.getCurrencyInstance().format(it.shieldFee)
                     },
                     onFailure = {
-                        callback?.onFailed(ShieldPlugins.shieldEnable, handleError(it))
+                        onResult(error = handleError(it))
                     }
                 )
             }
         }
+    }
+
+    private fun onResult(shieldOffer: ShieldOffer? = null, error: ShieldException? = null) {
+        when {
+            shieldOffer != null -> {
+                cacheResult = mutableMapOf(SHIELD_FEE_KEY to shieldOffer.shieldFee)
+            }
+            error != null -> {
+                cacheResult = mutableMapOf(ERROR_KEY to error)
+            }
+        }
+        cacheResult[IS_SHIELD_ENABLE_KEY] = shieldEnable
+        callback?.onResult(cacheResult)
     }
 
     private fun handleError(throwable: Throwable): ShieldException {
@@ -87,6 +109,7 @@ class WidgetView @JvmOverloads constructor(
     }
 
     override fun onDetachedFromWindow() {
+        cacheResult.clear()
         cancelJob()
         super.onDetachedFromWindow()
     }

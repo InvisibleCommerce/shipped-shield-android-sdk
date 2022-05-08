@@ -6,12 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doAfterTextChanged
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import com.shippedsuite.example.databinding.FragmentMainBinding
-import com.shippedsuite.shippedshield.exception.ShieldException
 import com.shippedsuite.shippedshield.widget.LearnMoreDialog
 import com.shippedsuite.shippedshield.widget.WidgetView
 import kotlinx.coroutines.flow.debounce
@@ -51,18 +51,20 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.widgetView.callback = object : WidgetView.Callback<BigDecimal> {
-            override fun onSuccess(isShieldEnabled: Boolean, shieldFee: BigDecimal) {
-                Log.d(TAG, "Get shield fee: $shieldFee, isShieldEnabled: $isShieldEnabled")
-            }
-
-            override fun onFailed(isShieldEnabled: Boolean, exception: ShieldException) {
-                Log.e(TAG, "Failed to get shield fee! isShieldEnabled: $isShieldEnabled", exception)
+            override fun onResult(result: Map<String, Any>) {
+                Log.d(TAG, "Widget response $result")
             }
         }
 
-        binding.input.doAfterTextChanged {
-            viewModel.searchKey.value = it?.trim()?.toString()
-        }
+        binding.input.setOnEditorActionListener(
+            OnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    viewModel.searchKey.value = binding.input.text?.trim()?.toString()
+                    return@OnEditorActionListener true
+                }
+                false
+            }
+        )
 
         viewModel.searchKey
             .debounce(300)
