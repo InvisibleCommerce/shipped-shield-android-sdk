@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.shippedsuite.shippedshield.APIRepository
 import com.shippedsuite.shippedshield.ShieldAPIRepository
 import com.shippedsuite.shippedshield.ShieldPlugins.shieldEnable
-import com.shippedsuite.shippedshield.databinding.ViewShieldFeeBannerBinding
+import com.shippedsuite.shippedshield.databinding.ViewShieldWidgetBinding
 import com.shippedsuite.shippedshield.exception.APIException
 import com.shippedsuite.shippedshield.exception.ShieldException
 import com.shippedsuite.shippedshield.model.ShieldOffer
@@ -44,7 +44,7 @@ class WidgetView @JvmOverloads constructor(
     }
 
     private val binding by lazy {
-        ViewShieldFeeBannerBinding.inflate(LayoutInflater.from(context), this, true)
+        ViewShieldWidgetBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
     init {
