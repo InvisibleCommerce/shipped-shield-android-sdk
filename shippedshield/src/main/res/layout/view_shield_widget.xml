@@ -36,25 +36,27 @@
 
         <TextView
             android:id="@+id/learn_more"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:gravity="center"
+            android:gravity="start|center_vertical"
             android:paddingHorizontal="8dp"
             android:text="@string/shield_learn_more"
             android:textColor="#4D4D4D"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/shipped_shield"
+            app:layout_constraintEnd_toStartOf="@id/fee"
             app:layout_constraintStart_toEndOf="@id/shipped_shield"
             app:layout_constraintTop_toTopOf="@id/shipped_shield"
             tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/fee"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:ellipsize="end"
             android:gravity="end"
+            android:maxLines="1"
             android:text="@string/shield_fee_default"
             android:textColor="#1A1A1A"
             android:textSize="14sp"
