@@ -14,7 +14,7 @@ class LearnMoreDialog internal constructor(context: Context) :
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_shield_fee)
+        setContentView(R.layout.dialog_learn_more)
         findViewById<Button>(R.id.shipped_action_next)?.setOnClickListener { dismiss() }
     }
 
