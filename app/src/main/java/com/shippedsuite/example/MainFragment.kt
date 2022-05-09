@@ -1,12 +1,14 @@
 package com.shippedsuite.example
 
 import android.app.AlertDialog
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -60,6 +62,8 @@ class MainFragment : Fragment() {
             OnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     viewModel.searchKey.value = binding.input.text?.trim()?.toString()
+                    val inputMethodManager = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputMethodManager.hideSoftInputFromWindow(binding.input.windowToken, 0)
                     return@OnEditorActionListener true
                 }
                 false
@@ -71,7 +75,6 @@ class MainFragment : Fragment() {
             .distinctUntilChanged()
             .asLiveData()
             .observe(viewLifecycleOwner) {
-                // Option 1: We support custom ui, you just need to pass the `order` params
                 val price = try {
                     BigDecimal.valueOf(binding.input.text.trim().toString().toDouble())
                 } catch (e: Exception) {
@@ -105,7 +108,6 @@ class MainFragment : Fragment() {
                 showAlert("Error", "Please input valid order price!")
                 return@setOnClickListener
             }
-            // Option 2: We support api, so that you can use your own UI
             viewModel.getShieldFee(price)
         }
     }
