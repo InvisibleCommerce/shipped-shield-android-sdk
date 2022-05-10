@@ -18,7 +18,7 @@ data class ShieldConfiguration internal constructor(
         /**
          * Set the environment to be used by Shipped
          */
-        private var environment: Mode = Mode.PRODUCTION
+        private var environment: Mode = Mode.DEVELOPMENT
 
         fun enableLogging(enable: Boolean): Builder = apply {
             this.enableLogging = enable

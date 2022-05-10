@@ -36,7 +36,7 @@ class ShippedShield internal constructor(
             ShieldPlugins.initialize(
                 ShieldConfiguration.Builder(applicationContext, publicKey)
                     .enableLogging(false)
-                    .setEnvironment(Mode.PRODUCTION)
+                    .setEnvironment(Mode.DEVELOPMENT)
                     .build()
             )
         }
