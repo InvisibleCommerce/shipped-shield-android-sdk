@@ -17,6 +17,9 @@ import kotlinx.coroutines.*
 import java.math.BigDecimal
 import java.text.NumberFormat
 
+/**
+A widget view which shows the shield fee.
+ */
 class WidgetView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

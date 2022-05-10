@@ -2,6 +2,9 @@ package com.shippedsuite.shippedshield
 
 import android.content.Context
 
+/**
+`ShieldConfiguration` contains the base configuration the SDK needs.
+ */
 data class ShieldConfiguration internal constructor(
     val applicationContext: Context,
     val publicKey: String,
@@ -10,14 +13,8 @@ data class ShieldConfiguration internal constructor(
 ) {
     class Builder(private val applicationContext: Context, private val publicKey: String) {
 
-        /**
-         * You can set to true if you want to see more debug logs
-         */
         private var enableLogging: Boolean = false
 
-        /**
-         * Set the environment to be used by Shipped
-         */
         private var environment: Mode = Mode.DEVELOPMENT
 
         fun enableLogging(enable: Boolean): Builder = apply {

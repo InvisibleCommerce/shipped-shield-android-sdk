@@ -26,7 +26,7 @@ class MainFragment : Fragment() {
         const val TAG = "MainFragment"
     }
 
-    private val defaultPrice = BigDecimal.valueOf(129.99)
+    private val defaultOrderValue = BigDecimal.valueOf(129.99)
 
     private val binding: FragmentMainBinding by lazy {
         FragmentMainBinding.inflate(layoutInflater)
@@ -52,6 +52,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // WidgetView callback
         binding.widgetView.callback = object : WidgetView.Callback<BigDecimal> {
             override fun onResult(result: Map<String, Any>) {
                 Log.d(TAG, "Widget response $result")
@@ -75,16 +76,18 @@ class MainFragment : Fragment() {
             .distinctUntilChanged()
             .asLiveData()
             .observe(viewLifecycleOwner) {
-                val price = try {
+                val orderValue = try {
                     BigDecimal.valueOf(binding.input.text.trim().toString().toDouble())
                 } catch (e: Exception) {
-                    showAlert("Error", "Please input valid order price!")
+                    showAlert("Invalid amount", "Please input a valid amount for order value.")
                     return@observe
                 }
-                binding.widgetView.updateOrderValue(price)
+
+                // Update order value
+                binding.widgetView.updateOrderValue(orderValue)
             }
 
-        binding.input.setText(defaultPrice.toString())
+        binding.input.setText(defaultOrderValue.toString())
 
         viewModel.shieldLiveData.observe(viewLifecycleOwner) {
             when (it) {
@@ -97,18 +100,20 @@ class MainFragment : Fragment() {
             }
         }
 
+        // Display learn more model manually
         binding.displayLearnMoreModel.setOnClickListener {
             LearnMoreDialog.show(requireContext())
         }
 
+        // Get shield fee manually
         binding.sendShieldFeeRequest.setOnClickListener {
-            val price = try {
+            val orderValue = try {
                 BigDecimal.valueOf(binding.input.text.trim().toString().toDouble())
             } catch (e: Exception) {
-                showAlert("Error", "Please input valid order price!")
+                showAlert("Invalid amount", "Please input a valid amount for order value.")
                 return@setOnClickListener
             }
-            viewModel.getShieldFee(price)
+            viewModel.getShieldFee(orderValue)
         }
     }
 

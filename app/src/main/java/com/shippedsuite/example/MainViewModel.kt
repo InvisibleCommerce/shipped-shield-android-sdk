@@ -26,9 +26,9 @@ internal class MainViewModel(
         data class Fail(val exception: ShieldException) : ShieldOfferStatus()
     }
 
-    fun getShieldFee(price: BigDecimal) {
+    fun getShieldFee(orderValue: BigDecimal) {
         shield.getShieldFee(
-            price,
+            orderValue,
             object : ShippedShield.Listener<ShieldOffer> {
                 override fun onSuccess(response: ShieldOffer) {
                     shieldLiveData.value = ShieldOfferStatus.Success(response)

@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shippedsuite.shippedshield.R
 
+/**
+`LearnMoreDialog` is a dialog to show the learn more page.
+ */
 class LearnMoreDialog internal constructor(context: Context) :
     AppCompatDialog(context) {
 

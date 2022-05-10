@@ -28,12 +28,15 @@ internal class ShieldAPIRepository : APIRepository {
         val request: ShieldRequest
     ) : Options, Parcelable
 
+    /**
+    The request of getting shield fee.
+     */
     override suspend fun getShieldFee(options: Options): ShieldOffer {
         val baseUrl: String = ShieldPlugins.environment.baseUrl()
 
         return executeApiRequest(
             HttpRequest.createPost(
-                url = createShieldOffersdUrl(baseUrl),
+                url = createShieldOffersUrl(baseUrl),
                 params = (options as ShieldRequestOptions).request.toParamMap()
             ),
             ShieldOfferParser()
@@ -93,7 +96,7 @@ internal class ShieldAPIRepository : APIRepository {
     }
 
     companion object {
-        internal fun createShieldOffersdUrl(baseUrl: String): String {
+        internal fun createShieldOffersUrl(baseUrl: String): String {
             return getApiUrl(
                 baseUrl,
                 "v1/shield_offers"
