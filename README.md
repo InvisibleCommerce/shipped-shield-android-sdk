@@ -103,7 +103,7 @@ ShippedShield().getShieldFee(
 - Display learn more modal
 
 ```kotlin
-    LearnMoreDialog.show(requireContext())
+LearnMoreDialog.show(requireContext())
 ```
 
 ## License
