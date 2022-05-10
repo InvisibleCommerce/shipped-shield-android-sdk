@@ -32,14 +32,14 @@ Configure the SDK with your ShippedShield publishable API key.
 ```kotlin
 ShippedShield.configurePublicKey(
     this,
-    "pk_development_117c2ee46c122fb0ce070fbc984e6a4742040f05a1c73f8a900254a1933a0112"
+    "Public key"
 )
 ```
 
 If you want to test on different endpoint, you can customize mode. The default is Development mode, so make sure to switch to Production mode for your production build. 
 
 ```kotlin
-ShippedShield.setMode(Mode.DEVELOPMENT)
+ShippedShield.setMode(Mode.PRODUCTION)
 ```
 
 ### Create a Shield Widget view
