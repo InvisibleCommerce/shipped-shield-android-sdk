@@ -23,10 +23,9 @@ class ShippedShield internal constructor(
     )
 
     /**
-    Get shield fee.
-
-    @param orderValue An order value.
-    @param listener A handler which includes shield fee.
+     Get shield fee.
+     @param orderValue An order value.
+     @param listener A handler which includes shield fee.
      */
     fun getShieldFee(
         orderValue: BigDecimal,
@@ -43,7 +42,7 @@ class ShippedShield internal constructor(
     companion object {
 
         /**
-        Configure public key.
+         Configure public key.
          */
         fun configurePublicKey(applicationContext: Context, publicKey: String) {
             ShieldPlugins.initialize(
@@ -55,14 +54,14 @@ class ShippedShield internal constructor(
         }
 
         /**
-        Enable logging. False as default.
+         Enable logging. False as default.
          */
         fun enableLogging(enable: Boolean) {
             ShieldPlugins.enableLogging = enable
         }
 
         /**
-        Get sdk mode. Development mode as default.
+         Get sdk mode. Development mode as default.
          */
         fun setMode(environment: Mode) {
             ShieldPlugins.environment = environment

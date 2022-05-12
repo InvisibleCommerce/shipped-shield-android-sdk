@@ -29,7 +29,7 @@ internal class ShieldAPIRepository : APIRepository {
     ) : Options, Parcelable
 
     /**
-    The request of getting shield fee.
+     The request of getting shield fee.
      */
     override suspend fun getShieldFee(options: Options): ShieldOffer {
         val baseUrl: String = ShieldPlugins.environment.baseUrl()
