@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.shippedsuite.shippedshield.ShippedShield
-import com.shippedsuite.shippedshield.exception.ShieldException
-import com.shippedsuite.shippedshield.model.ShieldOffer
+import com.invisiblecommerce.shippedshield.ShippedShield
+import com.invisiblecommerce.shippedshield.exception.ShieldException
+import com.invisiblecommerce.shippedshield.model.ShieldOffer
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.math.BigDecimal
 

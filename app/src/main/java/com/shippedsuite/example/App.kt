@@ -1,8 +1,8 @@
 package com.shippedsuite.example
 
 import android.app.Application
-import com.shippedsuite.shippedshield.Mode
-import com.shippedsuite.shippedshield.ShippedShield
+import com.invisiblecommerce.shippedshield.Mode
+import com.invisiblecommerce.shippedshield.ShippedShield
 
 class App : Application() {
 

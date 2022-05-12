@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import com.shippedsuite.example.databinding.FragmentMainBinding
-import com.shippedsuite.shippedshield.widget.LearnMoreDialog
-import com.shippedsuite.shippedshield.widget.WidgetView
+import com.invisiblecommerce.shippedshield.widget.LearnMoreDialog
+import com.invisiblecommerce.shippedshield.widget.WidgetView
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import java.math.BigDecimal

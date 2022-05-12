@@ -21,7 +21,7 @@ Add `shippedshield` to your `build.gradle` dependencies.
 
 ```
 dependencies {
-    implementation 'com.shippedsuite.shippedshield:shippedshield:0.1.0'
+    implementation 'com.invisiblecommerce.shippedshield:shippedshield:0.1.0'
 }
 ```
 
@@ -47,7 +47,7 @@ ShippedShield.setMode(Mode.PRODUCTION)
 You can put it in the layout file where you want.
 
 ```xml
-<com.shippedsuite.shippedshield.widget.WidgetView
+<com.invisiblecommerce.shippedshield.widget.WidgetView
     android:id="@+id/widget_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
