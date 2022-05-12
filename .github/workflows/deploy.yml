@@ -2,20 +2,17 @@ name: Publish Release
 
 # Every time we merge to main branch we publish a release.
 on:
-  push:
-    branches: [ master ]
+  release:
+    types: [released]
   workflow_dispatch:
 
 jobs:
-
   publish-release:
+    name: Release build and publish
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-        with:
-          ref: master
 
       - name: Set up our JDK environment
         uses: actions/setup-java@v2

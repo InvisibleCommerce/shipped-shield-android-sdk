@@ -1,5 +1,7 @@
 ext {
-    shippedshieldGroupId = "io.github.invisiblecommerce"
+    libraryVersion = "0.1.0"
+
+    shippedshieldGroupId = "com.invisiblecommerce"
     shippedshieldArtifactId = MAVEN_ARTIFACT_ID
 
     shippedshieldName = MAVEN_ARTIFACT_NAME
@@ -9,7 +11,7 @@ ext {
     shippedshieldLicenseName = "MIT License"
     shippedshieldLicenseUrl = "https://opensource.org/licenses/MIT"
 
-    shippedshieldOrganizationName = "shippedshield"
+    shippedshieldOrganizationName = "Invisiblecommerce"
     shippedshieldOrganizationUrl = "https://invisiblecommerce.com/"
 
     shippedshieldScmConnection = "https://github.com/InvisibleCommerce/shipped-shield-android-sdk.git"
