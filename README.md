@@ -21,7 +21,7 @@ Add `shippedshield` to your `build.gradle` dependencies.
 
 ```
 dependencies {
-    implementation 'com.invisiblecommerce.shippedshield:shippedshield:0.1.0'
+    implementation 'com.invisiblecommerce:shippedshield:0.1.1'
 }
 ```
 

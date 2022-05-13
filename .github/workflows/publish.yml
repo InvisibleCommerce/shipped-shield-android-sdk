@@ -61,5 +61,5 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.versionName }}
           release_name: v${{ github.event.inputs.versionName }}
-          draft: true
-          prerelease: false
+          draft: false
+          prerelease: true
