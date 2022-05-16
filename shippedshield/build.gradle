@@ -64,6 +64,16 @@ dependencies {
 apply plugin: "com.vanniktech.maven.publish"
 
 afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId 'com.invisibleCommerce'
+                artifactId 'shippedshield'
+                version = VERSION_NAME
+            }
+        }
+    }
     signing {
         required { gradle.taskGraph.hasTask("publish") }
     }
