@@ -68,8 +68,8 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId 'com.invisibleCommerce'
-                artifactId 'shippedshield'
+                groupId GROUP
+                artifactId POM_ARTIFACT_ID
                 version = VERSION_NAME
             }
         }
