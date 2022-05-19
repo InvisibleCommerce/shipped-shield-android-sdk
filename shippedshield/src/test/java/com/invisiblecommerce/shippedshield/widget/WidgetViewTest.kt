@@ -1,10 +1,8 @@
 package com.invisiblecommerce.shippedshield.widget
 
 import android.content.Context
-import android.view.ContextThemeWrapper
 import androidx.test.core.app.ApplicationProvider
 import com.invisiblecommerce.shippedshield.ShippedShield
-import com.invisiblecommerce.shippedshield.widget.WidgetView
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
