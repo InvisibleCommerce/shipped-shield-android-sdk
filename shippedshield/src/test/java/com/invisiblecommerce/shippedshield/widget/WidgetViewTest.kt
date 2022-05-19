@@ -1,4 +1,4 @@
-package com.invisiblecommerce.shippedshield
+package com.invisiblecommerce.shippedshield.widget
 
 import android.content.Context
 import android.view.ContextThemeWrapper
