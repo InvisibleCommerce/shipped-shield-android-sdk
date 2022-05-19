@@ -22,7 +22,7 @@ jobs:
 
       - name: Run kLint check
         run: |
-          ./gradlew ktlintCheck
+          ./gradlew check
 
       - name: Run testing
         run: |
