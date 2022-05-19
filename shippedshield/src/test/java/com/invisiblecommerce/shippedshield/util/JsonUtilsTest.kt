@@ -21,7 +21,6 @@ class JsonUtilsTest {
         assertNull(ob)
     }
 
-
     @Test
     fun jsonObjectToMapTest() {
         assertNull(JsonUtils.jsonObjectToMap(null))

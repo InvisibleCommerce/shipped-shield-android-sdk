@@ -11,9 +11,9 @@ class ShieldOfferTest {
 
     private val offer = ShieldOffer(
         storefrontId = "1",
-        orderValue=BigDecimal.valueOf(129.99),
-        shieldFee=BigDecimal.valueOf(2.27),
-        offeredAt=date
+        orderValue = BigDecimal.valueOf(129.99),
+        shieldFee = BigDecimal.valueOf(2.27),
+        offeredAt = date
     )
 
     @Test

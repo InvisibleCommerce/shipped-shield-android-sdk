@@ -12,13 +12,13 @@ class ShieldOfferParserTest {
     fun parserTest() {
         val jsonObject = JSONObject(
             """
-        {
-            "storefront_id": "test-paws.myshopify.com",
-            "order_value": "129.99",
-            "shield_fee": "2.27",
-	        "offered_at": "2022-05-18T18:03:22.252-07:00"
-        }
-        """.trimIndent()
+                {
+                "storefront_id": "test-paws.myshopify.com",
+                "order_value": "129.99",
+                "shield_fee": "2.27",
+                "offered_at": "2022-05-18T18:03:22.252-07:00"
+                }
+            """.trimIndent()
         )
 
         val parser = ShieldOfferParser()

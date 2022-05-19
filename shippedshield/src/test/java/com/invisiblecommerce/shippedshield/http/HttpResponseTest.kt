@@ -17,8 +17,7 @@ class HttpResponseTest {
         assertEquals("{\"aaa\": \"bbb\"}", response.body)
         assertEquals("{\"aaa\":\"bbb\"}", response.responseJson.toString())
         assertEquals(
-            "Status Code: 200 \n" +
-                    " {\"aaa\": \"bbb\"}",
+            "Status Code: 200 \n" + " {\"aaa\": \"bbb\"}",
             response.toString()
         )
     }
