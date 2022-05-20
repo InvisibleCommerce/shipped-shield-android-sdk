@@ -25,13 +25,21 @@ jobs:
 
       - name: Run Coverage
         run: |
-          ./gradlew allDebugCoverage
+          ./gradlew prodNormalDebugCoverage debugCoverage
 
       - name: Add coverage to PR
+        id: jacoco
         uses: madrapps/jacoco-report@v1.2
         with:
-          title: Unit and integration test coverage
-          paths: ${{ github.workspace }}/build/reports/jacoco/allDebugCoverage/allDebugCoverage.xml
+          title: Code Coverage
+          paths: |
+            ${{ github.workspace }}/app/build/reports/jacoco/prodNormalDebugCoverage/prodNormalDebugCoverage.xml,
+            ${{ github.workspace }}/shippedshield/build/reports/jacoco/debugCoverage/debugCoverage.xml
           token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 60
-          min-coverage-changed-files: 80
+          min-coverage-overall: 40
+          min-coverage-changed-files: 60
+
+      - name: Get the Coverage info
+        run: |
+          echo "Total coverage ${{ steps.jacoco.outputs.coverage-overall }}"
+          echo "Changed Files coverage ${{ steps.jacoco.outputs.coverage-changed-files }}"
