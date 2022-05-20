@@ -5,6 +5,7 @@ plugins {
 }
 
 apply from: "../ktlint.gradle"
+apply from: '../jacoco/modules.gradle'
 
 android {
     compileSdk 31
