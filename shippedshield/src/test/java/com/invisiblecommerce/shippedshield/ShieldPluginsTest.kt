@@ -23,7 +23,7 @@ class ShieldPluginsTest {
                 .build()
         )
         Assert.assertEquals(ShieldPlugins.publicKey, publicKey)
-        Assert.assertEquals(ShieldPlugins.enableLogging, false)
+        Assert.assertFalse(ShieldPlugins.enableLogging)
         Assert.assertEquals(ShieldPlugins.environment, Mode.DEVELOPMENT)
         ShieldPlugins.shieldEnable = true
         Assert.assertEquals(ShieldPlugins.shieldEnable, true)

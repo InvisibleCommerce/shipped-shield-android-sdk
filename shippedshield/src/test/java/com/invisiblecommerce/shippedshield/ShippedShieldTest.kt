@@ -20,6 +20,8 @@ class ShippedShieldTest {
     fun getShieldFeeTest() = runBlocking {
         val publicKey = "pk_development_117c2ee46c122fb0ce070fbc984e6a4742040f05a1c73f8a900254a1933a0112"
         ShippedShield.configurePublicKey(context, publicKey)
+        ShippedShield.enableLogging(true)
+        ShippedShield.setMode(Mode.DEVELOPMENT)
 
         val defaultOrderValue = BigDecimal.valueOf(129.99)
         ShippedShield().getShieldFee(
