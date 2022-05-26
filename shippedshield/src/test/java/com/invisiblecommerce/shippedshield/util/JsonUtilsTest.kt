@@ -37,6 +37,19 @@ class JsonUtilsTest {
     }
 
     @Test
+    fun jsonObjectWithListToMapTest() {
+        val expectedMap = mapOf(
+            "a" to "a",
+            "list" to mapOf(
+                "b" to "b"
+            )
+        )
+
+        val mappedObject = JsonUtils.jsonObjectToMap(TEST_JSON_OBJECT_WITH_LIST)
+        assertEquals(expectedMap, mappedObject)
+    }
+
+    @Test
     fun jsonArrayToListTest() {
         assertNull(JsonUtils.jsonArrayToList(null))
 
@@ -60,6 +73,15 @@ class JsonUtilsTest {
                 "b": "b",
                 "c": true,
                 "d": 123
+            }
+            """.trimIndent()
+        )
+
+        private val TEST_JSON_OBJECT_WITH_LIST = JSONObject(
+            """
+            {
+                "a": "a",
+                "list": {"b": "b"}
             }
             """.trimIndent()
         )
