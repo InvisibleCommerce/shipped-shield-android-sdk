@@ -4,6 +4,8 @@ import android.content.Context
 import com.invisiblecommerce.shippedshield.exception.ShieldException
 import com.invisiblecommerce.shippedshield.model.ShieldOffer
 import com.invisiblecommerce.shippedshield.model.ShieldRequest
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import java.math.BigDecimal
 
 /**
@@ -18,8 +20,8 @@ class ShippedShield internal constructor(
         fun onFailed(exception: ShieldException)
     }
 
-    constructor() : this(
-        ShieldOperationManager(ShieldAPIRepository()),
+    constructor(ioDispatcher: CoroutineDispatcher = Dispatchers.IO) : this(
+        ShieldOperationManager(ShieldAPIRepository(ioDispatcher)),
     )
 
     /**

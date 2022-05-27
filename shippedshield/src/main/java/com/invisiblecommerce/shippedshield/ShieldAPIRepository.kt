@@ -12,6 +12,7 @@ import com.invisiblecommerce.shippedshield.model.ShieldModel
 import com.invisiblecommerce.shippedshield.model.parser.ModelJsonParser
 import com.invisiblecommerce.shippedshield.model.parser.ShieldOfferParser
 import com.invisiblecommerce.shippedshield.model.parser.ShieldErrorParser
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.parcelize.Parcelize
@@ -19,7 +20,7 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.util.*
 
-internal class ShieldAPIRepository : APIRepository {
+internal class ShieldAPIRepository(private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO) : APIRepository {
 
     private val httpClient: HttpClient = HttpClient()
 
@@ -53,7 +54,7 @@ internal class ShieldAPIRepository : APIRepository {
     private suspend fun <ModelType : ShieldModel> executeApiRequest(
         request: HttpRequest,
         jsonParser: ModelJsonParser<ModelType>
-    ): ModelType = withContext(Dispatchers.IO) {
+    ): ModelType = withContext(ioDispatcher) {
         val response = runCatching {
             httpClient.execute(request)
         }.getOrElse {
