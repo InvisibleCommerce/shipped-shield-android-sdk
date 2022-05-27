@@ -8,6 +8,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
@@ -25,6 +26,8 @@ class ShieldPluginsTest {
                 .build()
         )
         assertEquals(ShieldPlugins.publicKey, publicKey)
+        assertNotEquals(ShieldPlugins.publicKey, "")
+
         assertFalse(ShieldPlugins.enableLogging)
         assertEquals(ShieldPlugins.environment, Mode.DEVELOPMENT)
 
