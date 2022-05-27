@@ -2,11 +2,13 @@ package com.invisiblecommerce.shippedshield
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
-import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [29])
@@ -22,10 +24,11 @@ class ShieldPluginsTest {
                 .setEnvironment(Mode.DEVELOPMENT)
                 .build()
         )
-        Assert.assertEquals(ShieldPlugins.publicKey, publicKey)
-        Assert.assertFalse(ShieldPlugins.enableLogging)
-        Assert.assertEquals(ShieldPlugins.environment, Mode.DEVELOPMENT)
+        assertEquals(ShieldPlugins.publicKey, publicKey)
+        assertFalse(ShieldPlugins.enableLogging)
+        assertEquals(ShieldPlugins.environment, Mode.DEVELOPMENT)
+
         ShieldPlugins.shieldEnable = true
-        Assert.assertEquals(ShieldPlugins.shieldEnable, true)
+        assertTrue(ShieldPlugins.shieldEnable)
     }
 }
