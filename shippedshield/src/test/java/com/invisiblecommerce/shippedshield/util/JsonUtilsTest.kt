@@ -5,8 +5,43 @@ import org.json.JSONObject
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class JsonUtilsTest {
+
+    @Test
+    fun optIntTest() {
+        val jsonObject = JSONObject().put("key", 1)
+        assertEquals(1, JsonUtils.optInt(jsonObject, "key"))
+    }
+
+    @Test
+    fun optBoolTest() {
+        val jsonObject = JSONObject().put("key", true)
+        assertTrue(JsonUtils.optBoolean(jsonObject, "key"))
+    }
+
+    @Test
+    fun optDoubleTest() {
+        val jsonObject = JSONObject().put("key", 1.01)
+        assertEquals(1.01, JsonUtils.optDouble(jsonObject, "key"))
+    }
+
+    @Test
+    fun optMapTest() {
+        val jsonObject = JSONObject().put("key", mapOf(
+            "a" to "a",
+            "b" to "b",
+            "c" to true,
+            "d" to 123
+        ))
+        assertEquals(mapOf(
+            "a" to "a",
+            "b" to "b",
+            "c" to true,
+            "d" to 123
+        ), JsonUtils.optMap(jsonObject, "key"))
+    }
 
     @Test
     fun optStringTest() {

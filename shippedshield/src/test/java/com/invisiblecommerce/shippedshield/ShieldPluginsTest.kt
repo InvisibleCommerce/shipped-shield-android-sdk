@@ -25,9 +25,10 @@ class ShieldPluginsTest {
                 .setEnvironment(Mode.DEVELOPMENT)
                 .build()
         )
-        assertEquals(ShieldPlugins.publicKey, publicKey)
-        assertNotEquals(ShieldPlugins.publicKey, "")
 
+
+
+        assertEquals(ShieldPlugins.publicKey, publicKey)
         assertFalse(ShieldPlugins.enableLogging)
         assertEquals(ShieldPlugins.environment, Mode.DEVELOPMENT)
 
