@@ -3,7 +3,7 @@
  [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
  [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
  [![GitHub release](https://img.shields.io/github/release/InvisibleCommerce/shipped-shield-android-sdk.svg)](https://github.com/InvisibleCommerce/shipped-shield-android-sdk/releases)
- [![MavenCentral](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fs01.oss.sonatype.org%2Fservice%2Flocal%2Frepositories%2Freleases%2Fcontent%2Fcom%2Finvisiblecommerce%2Fshippedshield%2Fmaven-metadata.xml)]
+ [![MavenCentral](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fs01.oss.sonatype.org%2Fservice%2Flocal%2Frepositories%2Freleases%2Fcontent%2Fcom%2Finvisiblecommerce%2Fshippedshield%2Fmaven-metadata.xml)](https://s01.oss.sonatype.org/#nexus-search;quick~shippedshield)
  [![JitPack](https://www.jitpack.io/v/InvisibleCommerce/shipped-shield-android-sdk.svg)](https://www.jitpack.io/#InvisibleCommerce/shipped-shield-android-sdk)
  [![License](https://img.shields.io/badge/license-MIT%20License-00AAAA.svg)](https://github.com/InvisibleCommerce/shipped-shield-android-sdk/blob/main/LICENSE)
  [![Codecov](https://codecov.io/gh/InvisibleCommerce/shipped-shield-android-sdk/branch/main/graph/badge.svg?token=SuRuzq1Bx0)](https://codecov.io/gh/InvisibleCommerce/shipped-shield-android-sdk)
