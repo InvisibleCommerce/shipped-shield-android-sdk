@@ -8,6 +8,8 @@
  [![License](https://img.shields.io/badge/license-MIT%20License-00AAAA.svg)](https://github.com/InvisibleCommerce/shipped-shield-android-sdk/blob/main/LICENSE)
  [![Codecov](https://codecov.io/gh/InvisibleCommerce/shipped-shield-android-sdk/branch/main/graph/badge.svg?token=SuRuzq1Bx0)](https://codecov.io/gh/InvisibleCommerce/shipped-shield-android-sdk)
 
+**Note: This version of the SDK is deprecated in favor of our [Suite SDK](https://github.com/InvisibleCommerce/shipped-suite-android-client-sdk). See the [MIGRATION](MIGRATION.md)**
+
 Shipped Shield offers premium package assurance for shipments that are lost, damaged or stolen. Instantly track and resolve shipment issues hassle-free with the app.
 
 ## Example
