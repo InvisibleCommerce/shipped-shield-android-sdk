@@ -75,8 +75,8 @@ With
 ```
 
 ```kotlin
-binding.widgetView.type = ShippedSuiteType.GREEN
-binding.widgetView.isRespectServer = true
+binding.widgetView.type = ShippedSuiteType.SHIELD
+binding.widgetView.isRespectServer = false
 
 binding.widgetView.updateOrderValue(orderValue)
 ```
@@ -130,5 +130,5 @@ LearnMoreDialog.show(requireContext())
 With
 
 ```kotlin
-LearnMoreDialog.show(requireContext(), ShippedSuiteType.GREEN_AND_SHIELD)
+LearnMoreDialog.show(requireContext(), ShippedSuiteType.SHIELD)
 ```
